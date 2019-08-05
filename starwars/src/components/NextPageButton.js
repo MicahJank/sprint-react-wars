@@ -2,12 +2,12 @@ import React from 'react';
 import styled from 'styled-components';
 
 
-const NextPageButton = () => {
+const NextPageButton = ( { clickFunction }) => {
 
 
     return (
 
-        <button>Next Page</button>
+        <button onClick={clickFunction}>Next Page</button>
     );
 };
 

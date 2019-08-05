@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 
 import Character from './components/Character.js';
+import NextPageButton from './components/NextPageButton.js';
 
 import axios from 'axios';
 
@@ -12,7 +13,7 @@ const App = () => {
 
   const [characters, setCharacters] = useState([]);
 
-  const [nextPage, setNextPage] = useState([]);
+  const [nextPage, setNextPage] = useState(1);
 
   // Fetch characters from the star wars api in an effect hook. Remember, anytime you have a 
   // side effect in a component, you want to think about which state and/or props it should
@@ -21,7 +22,7 @@ const App = () => {
   useEffect(() => {
 
     const fetchData = () => {
-      axios.get('https://swapi.co/api/people')
+      axios.get(`https://swapi.co/api/people/?page=${nextPage}`)
       .then(dataObj => {
         console.log('dataObj', dataObj);
 
@@ -39,8 +40,8 @@ const App = () => {
   }, [nextPage]);
 
 
-  const handleChange = event => {
-    
+  const handleChange = () => {
+    setNextPage(nextPage + 1);
   }
 
 
@@ -55,7 +56,7 @@ const App = () => {
           })
         }
       </div>
-      
+      <NextPageButton clickFunction={handleChange}/>
     </div>
   );
 }
