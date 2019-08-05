@@ -22,7 +22,7 @@ const CharElement = styled.div`
 `;
 
 const CharH3 = styled.h3`
-
+    
 `;
 
 const Icon = styled.i`
