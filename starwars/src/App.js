@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 
+import Character from './components/Character.js';
+
 import axios from 'axios';
 
 
@@ -18,7 +20,7 @@ const App = () => {
 
     axios.get('https://swapi.co/api/people')
       .then(dataObj => {
-        console.log('dataObj', dataObj);
+        // console.log('dataObj', dataObj);
 
         setCharacters(dataObj.data.results); // characters is now an array of people
       })
@@ -29,11 +31,16 @@ const App = () => {
 
   }, []);
 
+  console.log('dataObj.data.results', characters);
   return (
     <div className="App">
       <h1 className="Header">React Wars</h1>
       <div>
-        
+        {
+          characters.map((character, i) => {
+            return <Character key={i} name={character.name} eyeColor={character.eye_color} hairColor={character.hair_color} gender={character.gender} />
+          })
+        }
       </div>
     </div>
   );
